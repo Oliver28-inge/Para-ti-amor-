@@ -1,0 +1,63 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 16px; /* 👈 evita que se pegue a los bordes en celular */
+  font-family: 'Georgia', serif;
+  background: linear-gradient(to bottom, #ff758c, #ff7eb3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow-x: hidden; /* 👈 clave para que no se corte */
+}
+
+.carta {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 20px;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* TÍTULO */
+h1 {
+  text-align: center;
+  color: #e6005c;
+  font-size: 1.6em;
+}
+
+/* TEXTO */
+p {
+  color: #333;
+  font-size: 1.05em;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+/* FIRMA */
+.firma {
+  text-align: center;
+  font-weight: bold;
+  color: #e6005c;
+  margin-top: 20px;
+  font-size: 1.1em;
+}
+
+/* AJUSTES EXTRA PARA CELULARES PEQUEÑOS */
+@media (max-width: 380px) {
+  .carta {
+    padding: 16px;
+  }
+
+  h1 {
+    font-size: 1.4em;
+  }
+
+  p {
+    font-size: 1em;
+  }
+}
