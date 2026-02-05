@@ -1,0 +1,77 @@
+* {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 12px;
+  font-family: 'Georgia', serif;
+  background: linear-gradient(to bottom, #ff758c, #ff7eb3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100dvh; /* mejor que vh en móvil */
+}
+
+/* CONTENEDOR DE LA CARTA */
+.carta {
+  background: rgba(255, 255, 255, 0.96);
+  padding: 18px;
+  border-radius: 18px;
+  width: 100%;
+  max-width: 420px; /* 👈 MÁS SEGURO EN CELULAR */
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+/* TÍTULO */
+h1 {
+  text-align: center;
+  color: #e6005c;
+  font-size: 1.5rem;
+  margin-top: 0;
+}
+
+/* TEXTO */
+p {
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: left; /* justify a veces rompe en móvil */
+  margin: 0.6em 0;
+}
+
+/* FIRMA */
+.firma {
+  text-align: center;
+  font-weight: bold;
+  color: #e6005c;
+  margin-top: 18px;
+  font-size: 1.05rem;
+}
+
+/* EXTRA PARA CELULARES MUY PEQUEÑOS */
+@media (max-width: 360px) {
+  body {
+    padding: 8px;
+  }
+
+  .carta {
+    padding: 14px;
+  }
+
+  h1 {
+    font-size: 1.3rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+}
