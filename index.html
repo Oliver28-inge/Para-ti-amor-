@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para ti, amor</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: radial-gradient(circle at top, #3a0000, #000);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Georgia, serif;
+  overflow: hidden;
+}
+
+/* 🌹 DECORACIÓN */
+.decoracion {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.elemento {
+  position: absolute;
+  font-size: 20px;
+  color: rgba(255, 90, 90, 0.85);
+  animation: flotar 12s linear infinite;
+}
+
+@keyframes flotar {
+  from {
+    transform: translateY(110vh) scale(0.6);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(-10vh) scale(1.2);
+    opacity: 1;
+  }
+}
+
+/* 💬 FRASES */
+.frase {
+  position: absolute;
+  color: rgba(255, 200, 200, 0.9);
+  font-size: 14px;
+  font-style: italic;
+  animation: flotarFrase 14s linear infinite;
+}
+
+@keyframes flotarFrase {
+  from {
+    transform: translateY(120vh);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(-15vh);
+    opacity: 1;
+  }
+}
+
+/* 💌 CARTA */
+.carta {
+  width: 340px;
+  height: 500px;
+  perspective: 1500px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.frente, .dentro {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 18px;
+  backface-visibility: hidden;
+  transition: transform 1.4s ease;
+  padding: 26px;
+  box-shadow: 0 0 55px rgba(200, 0, 0, 0.7);
+}
+
+/* PORTADA */
+.frente {
+  background: linear-gradient(145deg, #5a0000, #a00000);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 3px;
+}
+
+.frente span {
+  font-size: 52px;
+  margin-bottom: 10px;
+  animation: latido 1.5s infinite;
+}
+
+@keyframes latido {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+/* INTERIOR */
+.dentro {
+  background: #140000;
+  color: #f5dcdc;
+  transform: rotateY(180deg);
+  overflow-y: auto;
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+.carta.abierta .frente {
+  transform: rotateY(180deg);
+}
+
+.carta.abierta .dentro {
+  transform: rotateY(360deg);
+}
+
+/* ❤️ TE AMO */
+.teamo {
+  font-size: 22px;
+  color: #ff7b7b;
+  text-align: center;
+  animation: brillo 2s infinite;
+}
+
+@keyframes brillo {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* SCROLL */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background: #b00000;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🌸 ELEMENTOS FLOTANTES -->
+<div class="decoracion" id="decoracion"></div>
+
+<!-- 💌 CARTA -->
+<div class="carta" onclick="abrirCarta()">
+  <div class="frente">
+    <span>❤️</span>
+    <p>Amor</p>
+    <small>Toca aquí</small>
+  </div>
+
+  <div class="dentro">
+    <p>
+      Sé que nos conocemos hace poco, pero desde el segundo que bailamos me perdí en tus ojos.
+      Cada día que hablamos me empecé a perder en cada palabra que decías;
+      cada mínima cosa que dices la escucho y la guardo como si fuera un tesoro.
+    </p>
+
+    <p>
+      Me gustas tú, me gusta hablar de ti, me gusta hablar contigo.
+    </p>
+
+    <p>
+      Sé que somos personas diferentes, aunque, si te soy sincero,
+      siempre he creído mucho en los polos opuestos que se atraen.
+      Si hasta físicamente las leyes del magnetismo y la teología,
+      el yin y yang, funcionan así, supongo que en la vida real es igual.
+    </p>
+
+    <p>
+      Esta canción dura 4:58 minutos, aunque yo te la dedicaría toda la vida.
+      (Aunque tengo millones de canciones para dedicarte y decirte lo mucho que te amo).
+    </p>
+
+    <p>
+      Gracias por compartir momentos conmigo. Quiero conocerte más,
+      hablar contigo cada noche, cada día; quiero saber todo de ti.
+      Quiero ser alguien en quien puedas confiar, quien pueda cuidarte
+      y tratar de ser la mejor persona para ti.
+    </p>
+
+    <p class="teamo">Te amo.</p>
+
+    <em style="display:block; text-align:center;">Feliz San Valentín, amor 🌹</em>
+  </div>
+</div>
+
+<audio id="musica" src="entombed.mp3" preload="auto"></audio>
+
+<script>
+let abierta = false;
+
+const frases = [
+  "Amo tus ojos",
+  "Te amo a ti",
+  "Me encantas",
+  "Pienso en ti",
+  "Tu sonrisa",
+  "Eres especial",
+  "Me gustas mucho",
+  "Contigo todo"
+];
+
+function crearDecoracion() {
+  const deco = document.getElementById("decoracion");
+
+  for (let i = 0; i < 20; i++) {
+    const el = document.createElement("div");
+    el.className = "elemento";
+    el.style.left = Math.random() * 100 + "%";
+    el.style.animationDelay = Math.random() * 6 + "s";
+    el.innerText = Math.random() > 0.5 ? "❤️" : "🌹";
+    deco.appendChild(el);
+  }
+
+  for (let i = 0; i < frases.length; i++) {
+    const f = document.createElement("div");
+    f.className = "frase";
+    f.style.left = Math.random() * 80 + "%";
+    f.style.top = Math.random() * 100 + "vh";
+    f.style.animationDelay = i * 1.5 + "s";
+    f.innerText = frases[i];
+    deco.appendChild(f);
+  }
+}
+
+function abrirCarta() {
+  if (abierta) return;
+  abierta = true;
+
+  document.querySelector('.carta').classList.add('abierta');
+  const musica = document.getElementById('musica');
+  musica.volume = 0.6;
+  musica.play();
+
+  crearDecoracion();
+}
+</script>
+
+</body>
+</html>
+
